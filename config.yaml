@@ -1,4 +1,3 @@
-```yaml
 # Configuración del pipeline
 dataset:
   url: "https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv"
@@ -20,4 +19,3 @@ mlflow:
 output:
   model_dir: "models"
   model_name: "wine_quality_rf"
-```
