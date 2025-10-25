@@ -50,9 +50,4 @@ Notas sobre CI/CD (GitHub Actions)
   - lint (flake8)
   - make test
   - make train
-  - sube los directorios mlruns/ y models/ como artefactos del run
-
-Sugerencias
-- Si no quieres usar pip install -e ., puedes mantener tests/conftest.py; es un parche rápido que añade la raíz del repo a PYTHONPATH durante pytest.
-- Para un entorno de producción o empaquetado, considera agregar metadata adicional en setup.py (author, license, classifiers).
-```
+  - sube los directorios mlruns/ y models/ como artefactos del run``
