@@ -1,0 +1,24 @@
+# Virtualenvs
+.venv/
+env/
+venv/
+
+# Python caches
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Pytest cache
+.pytest_cache/
+
+# MLflow runs (if you prefer no subirlo; workflow sube mlruns como artefacto)
+# Si quieres versionarlo, elimina esta línea
+# mlruns/
+
+# Data and models
+data/
+models/
+
+# OS
+.DS_Store

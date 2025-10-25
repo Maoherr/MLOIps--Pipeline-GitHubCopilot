@@ -1,0 +1,23 @@
+```yaml
+# Configuración del pipeline
+dataset:
+  url: "https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv"
+  local_path: "data/winequality-red.csv"
+
+training:
+  test_size: 0.2
+  random_state: 42
+
+model:
+  n_estimators: 100
+  max_depth: 7
+  random_state: 42
+
+mlflow:
+  tracking_dir: "mlruns"
+  experiment_name: "wine-quality-experiment"
+
+output:
+  model_dir: "models"
+  model_name: "wine_quality_rf"
+```
