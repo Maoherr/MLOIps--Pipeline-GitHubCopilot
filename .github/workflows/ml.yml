@@ -1,0 +1,60 @@
+name: ML Pipeline CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-train:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          # instalar el paquete en modo editable para que pytest pueda importar src
+          pip install -e .
+
+      - name: Lint
+        run: |
+          pip install flake8
+          flake8 src || true
+
+      - name: Run tests
+        run: make test
+
+      - name: Run training
+        run: make train
+
+      - name: Upload MLflow runs and model artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlruns
+          path: mlruns
+
+      - name: Upload models directory
+        uses: actions/upload-artifact@v4
+        with:
+          name: models
+          path: models
